@@ -25,6 +25,10 @@ Route::get('/view-data',[NewsController::class,'viewData'])->name('view.data');
 Route::get('/book-add',[NewsController::class,'bookAdd'])->name('book.add');
 Route::get('/books',[NewsController::class,'books'])->name('books');
 Route::post('/add-book',[NewsController::class,'addBook'])->name('add.book');
+Route::get('/book-update/{id}',[NewsController::class,'bookUpdate'])->name('book.update');
+Route::put('/updateBook/{id}',[NewsController::class,'updateBook'])->name('update.Book');
+Route::post('delete-book',[NewsController::class,'deleteBook'])->name('delete.book');
+
 
 
 

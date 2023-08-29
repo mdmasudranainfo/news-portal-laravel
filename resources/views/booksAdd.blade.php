@@ -1,6 +1,7 @@
 @extends('layout.app')
 @section('content')
     <div class="container mt-5">
+        <h1>Add book</h1>
         <form action={{route('add.book')}} method="post" >
             @csrf
            <div class="">

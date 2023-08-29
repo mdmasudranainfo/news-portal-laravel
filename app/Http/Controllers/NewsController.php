@@ -5,9 +5,38 @@ namespace App\Http\Controllers;
 use App\Models\Books;
 use App\Models\News;
 use Illuminate\Http\Request;
+use function Laravel\Prompts\alert;
 
 class NewsController extends Controller
 {
+
+//    update books
+public function bookUpdate($id)
+{
+    $book=Books::find($id);
+    return view('bookUpdate' ,compact('book'));
+}
+
+public function updateBook(Request $request,$id){
+
+    $book = Books::find($id);
+    $book->bookName=$request->input('bookName');
+    $book->price=$request->input('price');
+    $book->author=$request->input('author');
+    $book->update();
+    return redirect('/books')->with('status', "update successfully");
+
+}
+
+public function deleteBook(Request $request)
+{
+    $query = Books::find($request->masud_id)->delete();
+    if($query){
+        return 'success';
+    }else{
+        return 'error';
+    }
+}
 
 //    view data
 public  function viewData(){
