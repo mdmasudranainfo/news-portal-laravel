@@ -21,3 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('/test',[NewsController::class,'textApi']);
+Route::get('/books-by-api',[NewsController::class,'showBooksByApi']);
+Route::post('/addBook',[NewsController::class,'addBookApi']);
+Route::post('/addBook/{id}',[NewsController::class,'deleteBooks']);
+Route::get('book/{id}',[NewsController::class,'singleBook']);
+Route::put('book-updates/{id}',[NewsController::class,'updateBooks']);
+
+

@@ -6,9 +6,58 @@ use App\Models\Books;
 use App\Models\News;
 use Illuminate\Http\Request;
 use function Laravel\Prompts\alert;
+use Response;
 
 class NewsController extends Controller
 {
+
+//    update Book
+public  function updateBooks(Request $request , $id){
+    $bookName=$request->input('bookName');
+    $price=$request->input('price');
+    $author=$request->input('author');
+
+    $object= Books::find($id);
+    $object->bookName=$bookName;
+    $object->price=$price;
+    $object->author=$author;
+    $object->update();
+    return "update success";
+
+
+}
+
+
+//    get single book
+public function singleBook(Request $request , $id){
+    $data=Books::find($id);
+    return $data;
+
+}
+
+//    delete Book
+public function deleteBooks(Request $request ,$id){
+    $data=Books::find($id)->delete();
+    return "delete success";
+
+}
+
+//    add Book api
+public function addBookApi(Request $request){
+
+    $bookName=$request->input('bookName');
+    $price=$request->input('price');
+    $author=$request->input('author');
+
+    $object= new Books();
+    $object->bookname=$bookName;
+    $object->price=$price;
+    $object->author=$author;
+    $object->save();
+    return "data added success";
+
+
+}
 
 //    update books
 public function bookUpdate($id)
@@ -71,7 +120,11 @@ public function addBook(Request $request){
 public  function books(){
     $data['books']=Books::all();
     return view('books',$data);
+}
 
+public  function showBooksByApi(){
+    $data = Books::all();
+    return Response::json(['books'=>$data]);
 }
 
 
